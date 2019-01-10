@@ -8,10 +8,12 @@ import retrofit2.http.Headers
 
 
 interface AirportsApi {
-    @Headers("Accept:application/json","Authorization:Bearer y5tfk73v3aey97qvzeweg5r2","X-Origination-IP:105.161.103.162")
+    @Headers("Accept:application/json",
+        "Authorization:Bearer y5tfk73v3aey97qvzeweg5r2",
+        "X-Origination-IP:105.161.103.162")
     @GET("v1/references/airports/?lang=en&limit=100&offset=0&LHoperated=0")
 
-    fun getAirports() : Call<List<Airport>>
+    fun getAirports() : Call<MyModelClass>
 
     companion object {
 
