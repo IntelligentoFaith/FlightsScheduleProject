@@ -10,6 +10,7 @@ object Constant {
 
  var picUpAirport : Airport?= null
  var dropUpAirport : Airport?= null
+ var pickedDate:String = ""
 
  var myLat:Double?= null
  var myLong:Double ?= null

@@ -31,7 +31,10 @@ mirecyclerView = findViewById(R.id.tcPilot);
     }
 
     fun getAPICALL() {
-        val linkTrang = "https://api.lufthansa.com/v1/operations/schedules/" +Constant.picUpAirport?.names?.name?.port +"/"+Constant.picUpAirport?.names?.name?.port+"2019-01-15?directFlights=false"
+        val linkTrang = "https://api.lufthansa.com/v1/operations/schedules/" +Constant.picUpAirport?.names?.name?.port +"/"+Constant.dropUpAirport?.names?.name?.port+"/"+Constant.pickedDate
+        //+"?directFlights=false"
+
+        Log.d("#####Schedules api#####","$linkTrang")
 
         val queue = Volley.newRequestQueue(this)
 

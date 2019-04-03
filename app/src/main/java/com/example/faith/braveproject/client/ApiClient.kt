@@ -38,7 +38,8 @@ class ApiClient:Dependencies() {
     override fun getHeaders(): HashMap<String, String> {
         val params = HashMap<String, String>()
         params.put("Accept", "application/json")
-        params.put("Authorization", "Bearer y5tfk73v3aey97qvzeweg5r2")
+        params.put("Authorization", "Bearer np6ttw4zdu83x34jcxg8enyc")
+        params.put("X-Originating-IP", "105.160.197.97")
         return params
     }
 

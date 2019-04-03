@@ -1,5 +1,6 @@
 package com.example.faith.braveproject.activites
 
+import android.app.DatePickerDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -26,6 +27,8 @@ import com.example.faith.braveproject.pojo.Airport
 import com.example.faith.braveproject.pojo.MyModelClass
 import com.example.faith.braveproject.util.Constant
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_main.*
+import java.util.*
 
 class MainActivity : AppCompatActivity() {
     lateinit var originAirportAdapter: OriginAirportItemAdapter
@@ -39,10 +42,31 @@ class MainActivity : AppCompatActivity() {
 
         pickUpSpinner = findViewById<Spinner>(R.id.RVoriginAirport)
         dropUpSpinner = findViewById<Spinner>(R.id.RVdestinationAirport)
+
+        val myCalener = Calendar.getInstance()
+        val year = myCalener.get(Calendar.YEAR)
+        val month = myCalener.get(Calendar.MONTH)
+        val day = myCalener.get(Calendar.DAY_OF_MONTH)
+        btnPickDate.setOnClickListener {
+            val dpd = DatePickerDialog(this,DatePickerDialog.OnDateSetListener{view, mYear, mMonth, mDay ->
+                val nMonth= mMonth +1
+                var monthString = nMonth.toString()
+                if (monthString.length==1){
+                    monthString = "0" + monthString
+                }
+                btnPickDate.setText(""+mYear+ "/"+ monthString+"/"+mDay)
+                Constant.pickedDate = btnPickDate.text.toString()
+                Log.d("####DATE###"," ${Constant.pickedDate}")
+            }, year, month, day)
+            dpd.show()
+        }
+
+
     findViewById<Button>(R.id.btnSubmit).setOnClickListener{
                         startActivity(Intent(this, ShowFlightActivity::class.java))
 
     }
+
 
     }
 
@@ -64,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Accept"] = "application/json"
-                headers["Authorization"] = "Bearer ftnx4g6f88bswwkyrup2amut"
+                headers["Authorization"] = "Bearer np6ttw4zdu83x34jcxg8enyc"
                 return headers
             }
         }
