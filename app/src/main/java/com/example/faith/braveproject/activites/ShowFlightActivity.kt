@@ -25,13 +25,14 @@ class ShowFlightActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_show_flight)
-mirecyclerView = findViewById(R.id.tcPilot);
+        mirecyclerView = findViewById(R.id.tcPilot);
         populateList()
+        getAPICALL()
 
     }
 
     fun getAPICALL() {
-        val linkTrang = "https://api.lufthansa.com/v1/operations/schedules/" +Constant.picUpAirport?.names?.name?.port +"/"+Constant.dropUpAirport?.names?.name?.port+"/"+Constant.pickedDate
+        val linkTrang = "https://api.lufthansa.com/v1/operations/schedules/" +Constant.picUpAirport?.airportCode +"/"+Constant.dropUpAirport?.airportCode+"/"+Constant.pickedDate
         //+"?directFlights=false"
 
         Log.d("#####Schedules api#####","$linkTrang")
@@ -41,7 +42,7 @@ mirecyclerView = findViewById(R.id.tcPilot);
         val stringRequest = object : StringRequest(
             Request.Method.GET, linkTrang,
             Response.Listener<String> { response ->
-                Log.d("A", "Response is: " + response.toString().replace("$", "port"))
+                Log.d("############", "Response is: " + response.toString().replace("$", "port"))
                 var currentResponse = response.toString().replace("$", "port")
                 var myValue = Gson().fromJson(currentResponse, FlightDetail::class.java)
                 flightAdapter.updateList(myValue.scheduleResource!!.schedule!![0]?.flight as ArrayList<Flight?>?)
@@ -51,7 +52,7 @@ mirecyclerView = findViewById(R.id.tcPilot);
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Accept"] = "application/json"
-                headers["Authorization"] = "Bearer y5tfk73v3aey97qvzeweg5r2"
+                headers["Authorization"] = "Bearer jg9ryug2qscbjp6bxayyd3sm"
                 return headers
             }
         }
@@ -62,7 +63,7 @@ mirecyclerView = findViewById(R.id.tcPilot);
     fun  populateList(){
         flightAdapter = FlightAdapter(this, arrayListOf() ,object  : FlightLisntenr {
             override fun FlightClick(Bid: Flight?) {
-                startActivity(Intent(this@ShowFlightActivity, ShowFlightActivity::class.java))
+                startActivity(Intent(this@ShowFlightActivity, MapsActivity::class.java))
 
             }
 

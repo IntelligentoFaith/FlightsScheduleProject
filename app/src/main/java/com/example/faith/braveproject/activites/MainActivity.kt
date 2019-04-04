@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        getUsers()
+        getAirports()
 
         pickUpSpinner = findViewById<Spinner>(R.id.RVoriginAirport)
         dropUpSpinner = findViewById<Spinner>(R.id.RVdestinationAirport)
@@ -54,9 +54,14 @@ class MainActivity : AppCompatActivity() {
                 if (monthString.length==1){
                     monthString = "0" + monthString
                 }
-                btnPickDate.setText(""+mYear+ "/"+ monthString+"/"+mDay)
-                Constant.pickedDate = btnPickDate.text.toString()
-                Log.d("####DATE###"," ${Constant.pickedDate}")
+                var nDate = mDay
+                var dateString = nDate.toString()
+                if (dateString.length==1){
+                    dateString = "0"+dateString
+                }
+                btnPickDate.setText(""+mYear+ "-"+ monthString+"-"+dateString)
+              Constant.pickedDate = btnPickDate.text.toString()
+                Log.e("####PICKEDDATE###"," ${Constant.pickedDate}")
             }, year, month, day)
             dpd.show()
         }
@@ -70,8 +75,8 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun getUsers() {
-        val linkTrang = "https://api.lufthansa.com/v1/references/airports/?lang=en&limit=100&offset=0&LHoperated=0"
+    fun getAirports() {
+        val linkTrang = "https://api.lufthansa.com/v1/references/airports/?lang=en&limit=100&offset=0&LHoperated=1"
 
         val queue = Volley.newRequestQueue(this)
 
@@ -88,7 +93,7 @@ class MainActivity : AppCompatActivity() {
             override fun getHeaders(): MutableMap<String, String> {
                 val headers = HashMap<String, String>()
                 headers["Accept"] = "application/json"
-                headers["Authorization"] = "Bearer np6ttw4zdu83x34jcxg8enyc"
+                headers["Authorization"] = "Bearer jg9ryug2qscbjp6bxayyd3sm"
                 return headers
             }
         }

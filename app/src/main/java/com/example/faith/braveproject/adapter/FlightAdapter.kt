@@ -25,9 +25,10 @@ class FlightAdapter(private var mContext: Context?, private var mList:ArrayList<
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (mContext != null) {
-            holder.tvpickUp.text =  "Arrivaltime:"+mList!![position]?.arrival?.scheduledTimeLocal+"termial  "+mList!![position]?.arrival?.terminal
-            holder.tvDropup.text =  "Departuretime:"+mList!![position]?.arrival?.scheduledTimeLocal+"termial  "+mList!![position]?.arrival?.terminal
-//            holder.tvDetail.text =   "Departure :"  + mList[position]?.details +""
+            holder.tvDropup.text = "Airport Code: "+mList!![position]?.departure?.airportCode+ "\nDeparturetime: "+mList!![position]?.departure?.scheduledTimeLocal?.dateTime
+            holder.tvpickUp.text =  "Arrivaltime: "+mList!![position]?.arrival?.scheduledTimeLocal?.dateTime+"\nTermial: "+mList!![position]?.arrival?.terminal?.name
+
+//  holder.tvDetail.text =   "Departure :"  + mList[position]?.details +""
 
 
 

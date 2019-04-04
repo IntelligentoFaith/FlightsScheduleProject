@@ -56,11 +56,11 @@ data class Arrival(
 )
 
 data class Terminal(
-    @SerializedName("Name") var name: Int?
+    @SerializedName("Name") var name: String?
 )
 
 data class Equipment(
-    @SerializedName("AircraftCode") var aircraftCode: Int?
+    @SerializedName("AircraftCode") var aircraftCode: String?
 )
 
 data class MarketingCarrier(

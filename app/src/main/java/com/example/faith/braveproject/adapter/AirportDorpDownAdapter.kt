@@ -26,7 +26,7 @@ class AirportDorpDownAdapter internal constructor(var activity: Activity, val re
             viewHolder = convertView.tag as ViewHolder
         }
         if(dropdownList!![position] != null){
-            viewHolder.name?.text = dropdownList[position]?.names?.name?.port
+            viewHolder.name?.text = dropdownList[position]?.airportCode
 //            viewHolder.name?.text = dropdownList[position]?.names?.name
         }else {
             viewHolder.name?.text=""
@@ -47,7 +47,8 @@ class AirportDorpDownAdapter internal constructor(var activity: Activity, val re
             viewHolder = convertView.tag as ViewHolder
         }
         if(dropdownList!![position] != null){
-            viewHolder.name?.text = dropdownList[position]?.names?.name?.port
+            viewHolder.name?.text = dropdownList[position]?.airportCode
+            //.names?.name?.port
         }else {
             viewHolder.name?.text=""
         }
